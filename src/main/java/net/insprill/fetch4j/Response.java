@@ -5,6 +5,8 @@ import net.insprill.fetch4j.util.StreamUtils;
 
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Map;
 
 public class Response {
 
@@ -74,6 +76,18 @@ public class Response {
      */
     public String getHeader(String name) {
         return conn.getHeaderField(name);
+    }
+
+    /**
+     * Gets an unmodifiable Map of all response headers.
+     * The Map keys are the names of the headers,
+     * and the Map values are unmodifiable Lists that represent
+     * the corresponding header values.
+     *
+     * @return a Map of header fields
+     */
+    public Map<String, List<String>> getHeaders() {
+        return conn.getHeaderFields();
     }
 
     /**

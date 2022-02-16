@@ -47,6 +47,7 @@ public class Fetch {
         conn.setInstanceFollowRedirects(params.isFollowRedirects());
         conn.setConnectTimeout(params.getConnectionTimeout());
         conn.setConnectTimeout(params.getConnectionTimeout());
+        conn.setUseCaches(params.isUseCaches());
         if (params.getBody() != null) {
             conn.setDoOutput(true);
             conn.getOutputStream().write(params.getBody());

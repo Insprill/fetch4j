@@ -3,6 +3,7 @@ package net.insprill.fetch4j;
 import lombok.Getter;
 import net.insprill.fetch4j.exception.InvalidMethodException;
 
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class Params {
     private final Map<String, String> headers = new HashMap<>();
     private String method = "GET";
     private boolean followRedirects = true;
+    private boolean useCaches = true;
     private int connectionTimeout = 60000;
     private int readTimeout = 60000;
     private byte[] body;
@@ -85,6 +87,19 @@ public class Params {
      */
     public Params followRedirects(boolean followRedirects) {
         this.followRedirects = followRedirects;
+        return this;
+    }
+
+    /**
+     * Sets whether to use caches for this request.
+     * Sometimes it's important to be able to ignore the caches
+     * (e.g., the "reload" button in a browser).
+     * Defaults to true.
+     *
+     * @param useCaches Whether to use caches.
+     */
+    public Params useCaches(boolean useCaches) {
+        this.useCaches = useCaches;
         return this;
     }
 

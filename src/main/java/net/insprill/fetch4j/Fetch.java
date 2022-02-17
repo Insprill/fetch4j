@@ -1,6 +1,7 @@
 package net.insprill.fetch4j;
 
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import net.insprill.fetch4j.exception.HostNotFoundException;
 import net.insprill.fetch4j.exception.InvalidURLException;
 import net.insprill.fetch4j.exception.TimeoutException;
@@ -11,6 +12,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Map;
 
+@UtilityClass
 public class Fetch {
 
     /**
@@ -20,7 +22,7 @@ public class Fetch {
      * @throws TimeoutException      If the request times out.
      * @throws HostNotFoundException If the requested host is not found.
      */
-    public static Response fetch(String url) {
+    public Response fetch(String url) {
         return fetch(url, new Params());
     }
 
@@ -33,7 +35,7 @@ public class Fetch {
      * @throws HostNotFoundException If the requested host is not found.
      */
     @SneakyThrows
-    public static Response fetch(String url, Params params) {
+    public Response fetch(String url, Params params) {
         HttpURLConnection conn;
         try {
             conn = (HttpURLConnection) new URL(url).openConnection();

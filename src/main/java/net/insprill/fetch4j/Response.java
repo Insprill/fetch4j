@@ -27,14 +27,15 @@ public class Response {
     @SneakyThrows
     protected Response(HttpURLConnection conn) {
         this.conn = conn;
-        InputStream body = (getStatus() >= 400) ? conn.getErrorStream() : conn.getInputStream();
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        int nRead;
-        byte[] data = new byte[4096];
-        while ((nRead = body.read(data, 0, data.length)) != -1) {
-            buffer.write(data, 0, nRead);
+        try (InputStream body = (getStatus() >= 400) ? conn.getErrorStream() : conn.getInputStream()) {
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int nRead;
+            byte[] data = new byte[4096];
+            while ((nRead = body.read(data, 0, data.length)) != -1) {
+                buffer.write(data, 0, nRead);
+            }
+            responseBody = buffer.toByteArray();
         }
-        responseBody = buffer.toByteArray();
     }
 
     /**

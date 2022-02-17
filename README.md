@@ -56,8 +56,6 @@ dependencies {
 }
 ```
 
-All versions can be found [here](https://jitpack.io/#Insprill/fetch4j).
-
 ### Common Usage
 
 #### Simple GET

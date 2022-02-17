@@ -6,20 +6,16 @@
 
 
 
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
 <h1 align="center">Fetch4j</h1>
-  <p align="center">
-    A light-weight library that bring a Fetch-like API to Java.
-    <br />
-    <a href="https://insprill.net/javadocs/fetch4j"><strong>View Javadocs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/Insprill/fetch4j/issues">Report Bugs</a>
-    ·
-    <a href="https://github.com/Insprill/fetch4j/issues">Request Features</a>
-  </p>
+<p align="center">
+  A light-weight library that bring a Fetch-like API to Java.
+  <br />
+  <a href="https://insprill.net/javadocs/fetch4j"><strong>View Javadocs »</strong></a>
+  <br />
+  <br />
+  <a href="https://github.com/Insprill/fetch4j/issues">Report Bugs</a>
+  ·
+  <a href="https://github.com/Insprill/fetch4j/issues">Request Features</a>
 </p>
 
 
@@ -41,16 +37,8 @@
 
 ### Implementing in your project
 
-[![Release](https://jitpack.io/v/Insprill/fetch4j.svg)](https://jitpack.io/#Insprill/fetch4j)
-
+[![Maven Central][maven-central-shield]][license-url]
 #### Maven
-
-```xml
-<repository>
-    <id>jitpack.io</id>
-    <url>https://jitpack.io</url>
-</repository>
-```
 
 ```xml
 <dependency>
@@ -61,12 +49,6 @@
 ```
 
 #### Gradle
-
-```groovy
-repositories {
-    maven { url = 'https://jitpack.io' }
-}
-```
 
 ```groovy
 dependencies {
@@ -158,3 +140,5 @@ Distributed under the Apache 2.0 License. See [`LICENSE`][license-url] for more 
 [issues-url]: https://github.com/Insprill/fetch4j/issues
 [license-shield]: https://img.shields.io/github/license/Insprill/fetch4j.svg?style=for-the-badge
 [license-url]: https://github.com/Insprill/fetch4j/blob/master/LICENSE
+[maven-central-shield]: https://img.shields.io/maven-central/v/net.insprill/fetch4j
+[maven-central-url]: https://mvnrepository.com/artifact/net.insprill/fetch4j

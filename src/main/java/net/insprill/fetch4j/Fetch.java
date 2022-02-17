@@ -14,12 +14,20 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+/**
+ * CLass used to perform fetch operations.
+ */
 @UtilityClass
 public class Fetch {
 
+    /**
+     * The default charset used when others are not specified.
+     */
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     /**
+     * Performs a fetch operation with default parameters.
+     *
      * @param url URL to fetch.
      * @return A {@link Response}.
      * @throws InvalidURLException   If the URL provided is malformed.
@@ -31,6 +39,8 @@ public class Fetch {
     }
 
     /**
+     * Performs a fetch operation.
+     *
      * @param url    URL to fetch.
      * @param params Parameters to include in the request.
      * @return A {@link Response}.

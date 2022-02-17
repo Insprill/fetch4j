@@ -3,16 +3,20 @@ package net.insprill.fetch4j;
 import lombok.Getter;
 import net.insprill.fetch4j.exception.InvalidMethodException;
 
-import java.net.URLConnection;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Builder used to set parameters for fetch operations.
+ */
 @Getter
 public class Params {
 
+    /**
+     * @return Convenience method for constructing a new parameter builder.
+     */
     public static Params params() {
         return new Params();
     }
@@ -39,6 +43,7 @@ public class Params {
      * method is GET.
      *
      * @param method The HTTP method.
+     * @return The parameter builder.
      * @throws InvalidMethodException If the method provided is invalid.
      */
     public Params method(String method) {
@@ -64,6 +69,7 @@ public class Params {
      *
      * @param key   Header key.
      * @param value Header value.
+     * @return The parameter builder.
      */
     public Params header(String key, String value) {
         headers.put(key, value);
@@ -74,6 +80,7 @@ public class Params {
      * Convenience method to set the {@code Content-Type} header.
      *
      * @param contentType Content type.
+     * @return The parameter builder.
      */
     public Params contentType(String contentType) {
         header("Content-Type", contentType);
@@ -84,6 +91,7 @@ public class Params {
      * Set's whether the connection should follow redirects.
      *
      * @param followRedirects Follow redirects.
+     * @return The parameter builder.
      */
     public Params followRedirects(boolean followRedirects) {
         this.followRedirects = followRedirects;
@@ -97,6 +105,7 @@ public class Params {
      * Defaults to true.
      *
      * @param useCaches Whether to use caches.
+     * @return The parameter builder.
      */
     public Params useCaches(boolean useCaches) {
         this.useCaches = useCaches;
@@ -107,6 +116,7 @@ public class Params {
      * Sets the connection timeout.
      *
      * @param timeoutMillis Timeout in milliseconds.
+     * @return The parameter builder.
      */
     public Params connectionTimeout(int timeoutMillis) {
         this.connectionTimeout = timeoutMillis;
@@ -117,6 +127,7 @@ public class Params {
      * Sets the read timeout.
      *
      * @param timeoutMillis Timeout in milliseconds.
+     * @return The parameter builder.
      */
     public Params readTimeout(int timeoutMillis) {
         this.readTimeout = timeoutMillis;
@@ -127,6 +138,7 @@ public class Params {
      * Convenience method to set the connection and read timeouts.
      *
      * @param timeoutMillis Timeout in milliseconds.
+     * @return The parameter builder.
      */
     public Params timeout(int timeoutMillis) {
         connectionTimeout(timeoutMillis);
@@ -138,6 +150,7 @@ public class Params {
      * Set's the request body using UTF-8 encoding.
      *
      * @param body Request body.
+     * @return The parameter builder.
      * @see #contentType(String)
      */
     public Params body(String body) {
@@ -149,6 +162,7 @@ public class Params {
      *
      * @param body    Request body.
      * @param charset Charset to encoding the body with.
+     * @return The parameter builder.
      * @see #contentType(String)
      */
     public Params body(String body, Charset charset) {

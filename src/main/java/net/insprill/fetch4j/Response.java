@@ -9,11 +9,21 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class containing information about a response from a fetch operation.
+ *
+ * @see Fetch
+ */
 public class Response {
 
     private final HttpURLConnection conn;
     private final byte[] responseBody;
 
+    /**
+     * Constructs a new Response from a connected {@link HttpURLConnection}.
+     *
+     * @param conn Connection to server.
+     */
     @SneakyThrows
     protected Response(HttpURLConnection conn) {
         this.conn = conn;

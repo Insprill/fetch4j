@@ -147,7 +147,9 @@ public class Response {
      */
     @SneakyThrows
     public String getBody() {
-        String encoding = (getContentEncoding() != null && Charset.isSupported(getContentEncoding())) ? getContentEncoding() : "UTF-8";
+        String encoding = (getContentEncoding() != null && Charset.isSupported(getContentEncoding()))
+                ? getContentEncoding()
+                : Fetch.DEFAULT_CHARSET.name();
         return getBody(Charset.forName(encoding));
     }
 

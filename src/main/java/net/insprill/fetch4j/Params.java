@@ -141,7 +141,7 @@ public class Params {
      * @see #contentType(String)
      */
     public Params body(String body) {
-        return body(body, StandardCharsets.UTF_8);
+        return body(body, Fetch.DEFAULT_CHARSET);
     }
 
     /**

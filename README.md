@@ -92,7 +92,7 @@ String body = fetch("https://example.com/").getBody();
 import static net.insprill.fetch4j.Fetch.fetch;
 import static net.insprill.fetch4j.Params.params;
 
-Response response = fetch("https://example.com/api/register", params()
+Response response = fetch("https://example.com/api/paste", params()
         .method("POST")
         .body("Howdy"));
 ```
@@ -106,13 +106,13 @@ import static net.insprill.fetch4j.Params.params;
 Response response = fetch("https://example.com/api/register", params()
         .method("POST")
         .contentType("application/json")
-        .body("{\n"+
+        .body("{\n" +
                   "\"email\": \"me@example.net\",\n" +
                   "\"password\": \"password123\"\n" +
         "}"));
 ```
 
-### Compiling
+## Compiling
 
 To compile fetch4j, you need JDK 8 or higher and an internet connection.  
 Clone this repo, then run `./gradlew build` from your terminal.  
@@ -130,9 +130,11 @@ contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+3. Make your changes.
+4. Stage your changes (`git add .`)
+5. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+6. Push to the Branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
 
 <!-- LICENSE -->
 

@@ -64,12 +64,12 @@ public class Fetch {
         conn.setConnectTimeout(params.getConnectionTimeout());
         conn.setReadTimeout(params.getReadTimeout());
         conn.setUseCaches(params.isUseCaches());
-        if (params.getBody() != null) {
-            conn.setDoOutput(true);
-            conn.getOutputStream().write(params.getBody());
-        }
         try {
-            conn.connect();
+            if (params.getBody() != null) {
+                conn.setDoOutput(true);
+                conn.getOutputStream().write(params.getBody());
+            }
+            conn.connect(); // Connect if we don't have a body to send. Won't do anything if already connected.
         } catch (SocketTimeoutException e) {
             throw new TimeoutException(e);
         } catch (IOException e) {

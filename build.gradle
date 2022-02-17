@@ -28,6 +28,33 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
+            pom {
+                name = project.name
+                description = 'A light-weight Fetch-like library for Java'
+                url = 'https://github.com/Insprill/fetch4j'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'insprill'
+                        name = 'Pierce Thompson'
+                        url = 'https://github.com/Insprill'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/Insprill/fetch4j'
+                    connection = 'scm:git:git://github.com/Insprill/fetch4j.git'
+                    developerConnection = 'scm:git:git@github.com:Insprill/fetch4j.git'
+                }
+                issueManagement {
+                    system = 'GitHub Issues'
+                    url = 'https://github.com/Insprill/fetch4j/issues'
+                }
+            }
         }
     }
 }

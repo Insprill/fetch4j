@@ -1,8 +1,9 @@
 package net.insprill.fetch4j;
 
 import lombok.SneakyThrows;
-import net.insprill.fetch4j.util.StreamUtils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -11,10 +12,19 @@ import java.util.Map;
 public class Response {
 
     private final HttpURLConnection conn;
-    private String responseBody = null;
+    private final byte[] responseBody;
 
+    @SneakyThrows
     protected Response(HttpURLConnection conn) {
         this.conn = conn;
+        InputStream body = (getStatus() >= 400) ? conn.getErrorStream() : conn.getInputStream();
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[4096];
+        while ((nRead = body.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+        responseBody = buffer.toByteArray();
     }
 
     /**
@@ -126,11 +136,11 @@ public class Response {
      * @return The content length.
      */
     public long getContentLength() {
-        return conn.getContentLengthLong();
+        return conn.getContentLengthLong() == -1 ? responseBody.length : conn.getContentLengthLong();
     }
 
     /**
-     * Gets the response body, decoding it with the encoding returned from the server,
+     * Gets the response body as a String, decoding it with the encoding returned from the server,
      * or UTF-8 if none or an invalid one was provided.
      *
      * @return The response body.
@@ -142,18 +152,25 @@ public class Response {
     }
 
     /**
-     * Gets the response body.
+     * Gets the response body as a String.
      *
      * @param charset Charset to decode response body with.
      * @return The response body.
      */
     @SneakyThrows
     public String getBody(Charset charset) {
-        if (responseBody != null) {
-            return responseBody;
-        } else {
-            return responseBody = StreamUtils.inputStreamToString((getStatus() >= 400) ? conn.getErrorStream() : conn.getInputStream(), charset);
-        }
+        return new String(responseBody, charset);
+    }
+
+    /**
+     * Gets the response body's bytes.
+     *
+     * @return The bytes making up the response body.
+     */
+    public byte[] getBodyBytes() {
+        byte[] resBody = new byte[responseBody.length];
+        System.arraycopy(responseBody, 0, resBody, 0, responseBody.length);
+        return resBody;
     }
 
     @Override

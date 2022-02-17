@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'signing'
     id 'maven-publish'
     id "io.freefair.lombok" version "6.4.0"
 }
@@ -58,3 +59,9 @@ publishing {
         }
     }
 }
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications)
+}
+

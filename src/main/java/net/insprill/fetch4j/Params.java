@@ -1,6 +1,8 @@
 package net.insprill.fetch4j;
 
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 import net.insprill.fetch4j.exception.InvalidMethodException;
 
 import java.nio.charset.Charset;
@@ -14,6 +16,18 @@ import java.util.Map;
 @Getter
 public class Params {
 
+    @Setter
+    private static boolean defaultFollowRedirects = true;
+    @Setter
+    private static boolean defaultUseCaches = true;
+    @Setter
+    private static int defaultConnectionTimeout = 60000;
+    @Setter
+    private static int defaultReadTimeout = 60000;
+    @Setter
+    @NonNull
+    private static Map<String, String> defaultHeaders = new HashMap<>();
+
     /**
      * @return Convenience method for constructing a new parameter builder.
      */
@@ -21,12 +35,12 @@ public class Params {
         return new Params();
     }
 
-    private final Map<String, String> headers = new HashMap<>();
     private String method = "GET";
-    private boolean followRedirects = true;
-    private boolean useCaches = true;
-    private int connectionTimeout = 60000;
-    private int readTimeout = 60000;
+    private final Map<String, String> headers = defaultHeaders;
+    private boolean followRedirects = defaultFollowRedirects;
+    private boolean useCaches = defaultUseCaches;
+    private int connectionTimeout = defaultConnectionTimeout;
+    private int readTimeout = defaultReadTimeout;
     private byte[] body;
 
     /**

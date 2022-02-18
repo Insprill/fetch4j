@@ -37,7 +37,7 @@
 
 ### Implementing in your project
 
-[![Maven Central][maven-central-shield]][license-url]
+[![Maven Central][maven-central-shield]][maven-central-url]
 #### Maven
 
 ```xml

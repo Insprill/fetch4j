@@ -105,6 +105,17 @@ public class Params {
     }
 
     /**
+     * Convenience method to set the {@code User-Agent} header.
+     *
+     * @param userAgent User agent.
+     * @return The parameter builder.
+     */
+    public Params userAgent(String userAgent) {
+        header("User-Agent", userAgent);
+        return this;
+    }
+
+    /**
      * Set's whether the connection should follow redirects.
      *
      * @param followRedirects Follow redirects.

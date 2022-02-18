@@ -164,7 +164,7 @@ public class Params {
     }
 
     /**
-     * Set's the request body using UTF-8 encoding.
+     * Set's the request body to a String using UTF-8 encoding.
      *
      * @param body Request body.
      * @return The parameter builder.
@@ -175,7 +175,7 @@ public class Params {
     }
 
     /**
-     * Set's the request body.
+     * Set's the request body to a String.
      *
      * @param body    Request body.
      * @param charset Charset to encoding the body with.
@@ -184,6 +184,18 @@ public class Params {
      */
     public Params body(String body, Charset charset) {
         this.body = body.getBytes(charset);
+        return this;
+    }
+
+    /**
+     * Set's the request body.
+     *
+     * @param body Request body.
+     * @return The parameter builder.
+     * @see #contentType(String)
+     */
+    public Params body(byte[] body) {
+        this.body = body;
         return this;
     }
 

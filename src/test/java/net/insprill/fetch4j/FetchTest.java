@@ -25,7 +25,7 @@ public class FetchTest {
     @Test
     void post() {
         Response response = fetch("https://reqres.in/api/register", params()
-                .method("POST")
+                .method(Params.Method.POST)
                 .contentType("application/json")
                 .body("{\n" +
                         "\"email\": \"eve.holt@reqres.in\",\n" +
@@ -39,7 +39,7 @@ public class FetchTest {
 
     @Test
     void postBadRequest() {
-        Response response = fetch("https://reqres.in/api/register", params().method("POST"));
+        Response response = fetch("https://reqres.in/api/register", params().method(Params.Method.POST));
 
         assertEquals(400, response.getStatus());
         assertEquals("utf-8", response.getContentEncoding());

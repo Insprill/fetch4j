@@ -35,7 +35,7 @@ public class Params {
         return new Params();
     }
 
-    private String method = "GET";
+    private Method method = Method.GET;
     private final Map<String, String> headers = defaultHeaders;
     private boolean followRedirects = defaultFollowRedirects;
     private boolean useCaches = defaultUseCaches;
@@ -44,7 +44,18 @@ public class Params {
     private byte[] body;
 
     /**
-     * Sets the request method. Must be one of the following:
+     * Sets the request method. The default method is GET.
+     *
+     * @param method The request method.
+     * @return The parameter builder.
+     */
+    public Params method(Method method) {
+        this.method = method;
+        return this;
+    }
+
+    /**
+     * Sets the request method. The default method is GET.
      * <UL>
      * <LI>GET
      * <LI>POST
@@ -53,27 +64,19 @@ public class Params {
      * <LI>PUT
      * <LI>DELETE
      * <LI>TRACE
-     * </UL> subject to protocol restrictions.  The default
-     * method is GET.
+     * </UL> Subject to protocol restrictions.
      *
-     * @param method The HTTP method.
+     * @param method The name of the request method.
      * @return The parameter builder.
      * @throws InvalidMethodException If the method provided is invalid.
+     * @see Params#method(Method)
+     * @deprecated in favor of {@link Params#method(Method)}. May be removed in the future.
      */
+    @Deprecated
     public Params method(String method) {
-        method = method.toUpperCase(Locale.ROOT);
-        switch (method) {
-            case "GET":
-            case "POST":
-            case "HEAD":
-            case "OPTIONS":
-            case "PUT":
-            case "DELETE":
-            case "TRACE":
-                this.method = method;
-                break;
-            default:
-                throw new InvalidMethodException(method);
+        this.method = Method.fromName(method);
+        if (this.method == null) {
+            throw new InvalidMethodException(method);
         }
         return this;
     }
@@ -182,6 +185,55 @@ public class Params {
     public Params body(String body, Charset charset) {
         this.body = body.getBytes(charset);
         return this;
+    }
+
+    /**
+     * The method used when making a request.
+     */
+    public enum Method {
+        /**
+         * The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+         */
+        GET,
+        /**
+         * The HEAD method asks for a response identical to a GET request, but without the response body.
+         */
+        HEAD,
+        /**
+         * The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+         */
+        POST,
+        /**
+         * The PUT method replaces all current representations of the target resource with the request payload.
+         */
+        PUT,
+        /**
+         * The DELETE method deletes the specified resource.
+         */
+        DELETE,
+        /**
+         * The OPTIONS method describes the communication options for the target resource.
+         */
+        OPTIONS,
+        /**
+         * The TRACE method performs a message loop-back test along the path to the target resource.
+         */
+        TRACE;
+
+        /**
+         * Attempts to match a RequestMethod from its name case insensitively.
+         *
+         * @param name Name of request method.
+         * @return The matching RequestMethod, or null if no match was found.
+         */
+        public static Method fromName(String name) {
+            try {
+                return Method.valueOf(name.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException ignored) {
+                return null;
+            }
+        }
+
     }
 
 }

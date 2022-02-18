@@ -59,7 +59,7 @@ public class Fetch {
         for (Map.Entry<String, String> header : params.getHeaders().entrySet()) {
             conn.setRequestProperty(header.getKey(), header.getValue());
         }
-        conn.setRequestMethod(params.getMethod());
+        conn.setRequestMethod(params.getMethod().name());
         conn.setInstanceFollowRedirects(params.isFollowRedirects());
         conn.setConnectTimeout(params.getConnectionTimeout());
         conn.setReadTimeout(params.getReadTimeout());

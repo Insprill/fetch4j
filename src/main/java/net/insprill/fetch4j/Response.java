@@ -133,6 +133,9 @@ public class Response {
             return encoding;
         }
         String contentType = conn.getContentType();
+        if (contentType == null) {
+            return Fetch.DEFAULT_CHARSET.displayName();
+        }
         for (String s : contentType.split(";")) {
             String[] data = s.trim().split("=");
             if (data[0].equalsIgnoreCase("charset"))

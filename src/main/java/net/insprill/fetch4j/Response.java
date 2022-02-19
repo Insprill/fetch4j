@@ -16,6 +16,8 @@ import java.util.Map;
  */
 public class Response {
 
+    private static final byte[] EMPTY_RESPONSE_BODY = new byte[0];
+
     private final HttpURLConnection conn;
     private final byte[] responseBody;
 
@@ -28,6 +30,10 @@ public class Response {
     protected Response(HttpURLConnection conn) {
         this.conn = conn;
         try (InputStream body = (getStatus() >= 400) ? conn.getErrorStream() : conn.getInputStream()) {
+            if (body == null) {
+                responseBody = EMPTY_RESPONSE_BODY;
+                return;
+            }
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
             int nRead;
             byte[] data = new byte[4096];

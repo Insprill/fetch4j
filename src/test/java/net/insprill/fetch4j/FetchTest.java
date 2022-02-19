@@ -48,6 +48,14 @@ public class FetchTest {
     }
 
     @Test
+    void delete() {
+        Response response = fetch("https://reqres.in/api/users/2", params()
+                .method(Params.Method.DELETE));
+
+        assertEquals(204, response.getStatus());
+    }
+
+    @Test
     void unknownHostTest() {
         String URL = "https://www." + UUID.randomUUID() + ".gov/";
         try {

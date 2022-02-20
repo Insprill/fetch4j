@@ -26,7 +26,7 @@ public class FetchTest {
     void post() {
         Response response = fetch("https://reqres.in/api/register", params()
                 .method(Params.Method.POST)
-                .contentType("application/json")
+                .contentType(Params.ContentType.JSON)
                 .body("{\n" +
                         "\"email\": \"eve.holt@reqres.in\",\n" +
                         "\"password\": \"pistol\"\n" +

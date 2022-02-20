@@ -1,5 +1,6 @@
 package net.insprill.fetch4j;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -90,6 +91,17 @@ public class Params {
      */
     public Params header(String key, String value) {
         headers.put(key, value);
+        return this;
+    }
+
+    /**
+     * Convenience method to set the {@code Content-Type} header to a common content type.
+     *
+     * @param contentType Content type.
+     * @return The parameter builder.
+     */
+    public Params contentType(ContentType contentType) {
+        contentType(contentType.getName());
         return this;
     }
 
@@ -257,6 +269,42 @@ public class Params {
             }
         }
 
+    }
+
+    /**
+     * Convenience enum for common content types.
+     */
+    @AllArgsConstructor
+    public enum ContentType {
+        AAC("audio/aac"),
+        AVIF("aimage/avif"),
+        BINARY("application/octet-stream"),
+        BZIP("application/x-bzip"),
+        BZIP2("application/x-bzip2"),
+        CSS("text/css"),
+        GIF("image/gif"),
+        GZIP("application/gzip"),
+        HTML("text/html"),
+        JAR("application/java-archive"),
+        JAVASCRIPT("text/javascript"),
+        JPEG("image/jpeg"),
+        JSON("application/json"),
+        MP3("audio/mpeg"),
+        MP4("video/mp4"),
+        OGG("application/ogg"),
+        PDF("application/pdf"),
+        PNG("image/png"),
+        RAR("application/vnd.rar"),
+        SVG("image/svg+xml"),
+        TEXT("text/plain"),
+        WAV("audio/wav"),
+        WEBP("image/webp"),
+        XML("application/xml"),
+        ZIP("application/zip"),
+        ;
+
+        @Getter
+        private final String name;
     }
 
 }

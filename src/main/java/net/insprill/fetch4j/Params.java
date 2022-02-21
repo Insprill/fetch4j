@@ -110,6 +110,7 @@ public class Params {
      *
      * @param contentType Content type.
      * @return The parameter builder.
+     * @see Params#contentType(ContentType)
      */
     public Params contentType(String contentType) {
         header("Content-Type", contentType);

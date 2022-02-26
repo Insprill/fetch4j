@@ -195,6 +195,17 @@ public class Response {
         return resBody;
     }
 
+    /**
+     * Forces the connection to the server to be terminated.
+     * It is <b>NOT</b> required to call this method unless you absolutely need to.
+     * When not called, the connection will be kept open according to keep-alive rules, so it can be
+     * reused in the future. If it doesn't get reused when the keep-alive timeout is reached,
+     * it will be automatically closed.
+     */
+    public void disconnect() {
+        conn.disconnect();
+    }
+
     @Override
     public String toString() {
         return "Response={" +

@@ -37,7 +37,7 @@ public class Params {
     }
 
     private Method method = Method.GET;
-    private final Map<String, String> headers = defaultHeaders;
+    private final Map<String, String> headers = new HashMap<>(defaultHeaders);
     private boolean followRedirects = defaultFollowRedirects;
     private boolean useCaches = defaultUseCaches;
     private int connectionTimeout = defaultConnectionTimeout;

@@ -10,7 +10,7 @@ import static net.insprill.fetch4j.Fetch.fetch;
 import static net.insprill.fetch4j.Params.params;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FetchTest {
+class FetchTest {
 
     @Test
     void get() {

@@ -1,0 +1,32 @@
+1.3.1:
+ - Added Response#disconnect to force disconnect a keep-alive connection.
+ - Fixed Params#header modifying default headers.
+
+
+1.3.0:
+ - Added Params.Method enum for Params#method(Method), deprecating Params#method(String).
+ - Added Params#body(byte[]).
+ - Added Params#contentType shortcut for setting Content-Type header.
+ - Added Params.ContentType enum for setting common content types.
+ - Fixed NPE when getting response encoding when Content-Encoding and Content-Type headers are unset.
+ - Fixed NPE if server doesn't send response body on a failed request
+
+
+1.2.0:
+ - Added methods to set default parameters.
+ - Fixed read timeout never getting updated.
+ - Fixed response stream not getting closed after being read.
+ - Fixed HostNotFoundException not being thrown if a request body was present,
+ - Updated Javadocs.
+
+
+1.1.0:
+ - Added Response#getHeaders().
+ - Added Response#getBodyBytes().
+ - Added useCaches parameter.
+ - Made all exceptions extend FetchException.
+ - Removed the StreamUtils class.
+
+
+1.0.0:
+- Initial release

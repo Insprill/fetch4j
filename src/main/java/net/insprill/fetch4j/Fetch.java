@@ -3,18 +3,19 @@ package net.insprill.fetch4j;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import net.insprill.fetch4j.exception.HostNotFoundException;
+import net.insprill.fetch4j.exception.InvalidCharsetException;
 import net.insprill.fetch4j.exception.InvalidURLException;
 import net.insprill.fetch4j.exception.TimeoutException;
+import net.insprill.fetch4j.util.URLUtils;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.StringJoiner;
 
 /**
  * CLass used to perform fetch operations.
@@ -52,13 +53,10 @@ public class Fetch {
      */
     @SneakyThrows
     public Response fetch(String url, Params params) {
-        if (!params.getQueries().isEmpty()) {
-            StringJoiner joiner = new StringJoiner("&", url + "?", "");
-            for (Map.Entry<String, Object> entry : params.getQueries().entrySet()) {
-                String param = entry.getKey() + "=" + URLEncoder.encode(String.valueOf(entry.getValue()));
-                joiner.add(param);
-            }
-            url = joiner.toString();
+        try {
+            url = URLUtils.addQueryParams(url, params);
+        } catch (UnsupportedEncodingException e) {
+            throw new InvalidCharsetException(e);
         }
         HttpURLConnection conn;
         try {

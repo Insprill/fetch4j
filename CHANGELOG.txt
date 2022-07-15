@@ -1,3 +1,8 @@
+1.4.0:
+ - Added query parameter support.
+ - Fixed Response#getContentEncoding returning the default encoding's display name instead of name if no encoding was found.
+
+
 1.3.1:
  - Added Response#disconnect to force disconnect a keep-alive connection.
  - Fixed Params#header modifying default headers.

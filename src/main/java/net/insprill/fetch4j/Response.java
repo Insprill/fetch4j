@@ -141,7 +141,7 @@ public class Response {
         }
         String contentType = conn.getContentType();
         if (contentType == null) {
-            return Fetch.DEFAULT_CHARSET.displayName();
+            return Fetch.DEFAULT_CHARSET.name();
         }
         return URLUtils.getContentCharset(contentType);
     }

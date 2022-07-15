@@ -24,7 +24,10 @@ public class URLUtils {
             return url;
         String charset = Fetch.DEFAULT_CHARSET.name();
         if (params.getHeaders().containsKey("Content-Type")) {
-            charset = getContentCharset(params.getHeaders().get("Content-Type"));
+            String contentCharset = getContentCharset(params.getHeaders().get("Content-Type"));
+            if (contentCharset != null) {
+                charset = contentCharset;
+            }
         }
         StringJoiner joiner = new StringJoiner("&", url + "?", "");
         for (Map.Entry<String, Object> entry : params.getQueries().entrySet()) {

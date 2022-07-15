@@ -55,11 +55,7 @@ public class Fetch {
      */
     @SneakyThrows
     public Response fetch(String url, Params params) {
-        try {
-            url = URLUtils.addQueryParams(url, params);
-        } catch (UnsupportedEncodingException e) {
-            throw new InvalidCharsetException(e);
-        }
+        url = URLUtils.addQueryParams(url, params);
         HttpURLConnection conn;
         try {
             conn = (HttpURLConnection) new URL(url).openConnection();

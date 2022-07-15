@@ -3,6 +3,7 @@ package net.insprill.fetch4j.util;
 import lombok.experimental.UtilityClass;
 import net.insprill.fetch4j.Fetch;
 import net.insprill.fetch4j.Params;
+import net.insprill.fetch4j.exception.InvalidCharsetException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -23,7 +24,7 @@ public class URLUtils {
      * @param params The params containing the query parameters.
      * @return The URL with query parameters added.
      */
-    public String addQueryParams(String url, Params params) throws UnsupportedEncodingException {
+    public String addQueryParams(String url, Params params) throws InvalidCharsetException {
         if (params.getQueries().isEmpty())
             return url;
         String charset = Fetch.DEFAULT_CHARSET.name();
@@ -34,9 +35,13 @@ public class URLUtils {
             }
         }
         StringJoiner joiner = new StringJoiner("&", url + "?", "");
-        for (Map.Entry<String, Object> entry : params.getQueries().entrySet()) {
-            String param = entry.getKey() + "=" + URLEncoder.encode(String.valueOf(entry.getValue()), charset);
-            joiner.add(param);
+        try {
+            for (Map.Entry<String, Object> entry : params.getQueries().entrySet()) {
+                String param = entry.getKey() + "=" + URLEncoder.encode(String.valueOf(entry.getValue()), charset);
+                joiner.add(param);
+            }
+        } catch (UnsupportedEncodingException e) {
+            throw new InvalidCharsetException(e);
         }
         return joiner.toString();
     }

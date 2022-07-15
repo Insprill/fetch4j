@@ -23,6 +23,7 @@ public class URLUtils {
      * @param url    The URL to add query parameters to.
      * @param params The params containing the query parameters.
      * @return The URL with query parameters added.
+     * @throws InvalidCharsetException If an invalid Content-Type header charset was used.
      */
     public String addQueryParams(String url, Params params) throws InvalidCharsetException {
         if (params.getQueries().isEmpty())

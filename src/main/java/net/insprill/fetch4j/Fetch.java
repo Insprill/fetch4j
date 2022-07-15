@@ -9,7 +9,6 @@ import net.insprill.fetch4j.exception.TimeoutException;
 import net.insprill.fetch4j.util.URLUtils;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
@@ -35,9 +34,10 @@ public class Fetch {
      *
      * @param url URL to fetch.
      * @return A {@link Response}.
-     * @throws InvalidURLException   If the URL provided is malformed.
-     * @throws TimeoutException      If the request times out.
-     * @throws HostNotFoundException If the requested host is not found.
+     * @throws InvalidURLException     If the URL provided is malformed.
+     * @throws TimeoutException        If the request times out.
+     * @throws HostNotFoundException   If the requested host is not found.
+     * @throws InvalidCharsetException If an invalid Content-Type header charset was used for formatting query parameters.
      */
     public Response fetch(String url) {
         return fetch(url, new Params());
@@ -49,9 +49,10 @@ public class Fetch {
      * @param url    URL to fetch.
      * @param params Parameters to include in the request.
      * @return A {@link Response}.
-     * @throws InvalidURLException   If the URL provided is malformed.
-     * @throws TimeoutException      If the request times out.
-     * @throws HostNotFoundException If the requested host is not found.
+     * @throws InvalidURLException     If the URL provided is malformed.
+     * @throws TimeoutException        If the request times out.
+     * @throws HostNotFoundException   If the requested host is not found.
+     * @throws InvalidCharsetException If an invalid Content-Type header charset was used for formatting query parameters.
      */
     @SneakyThrows
     public Response fetch(String url, Params params) {

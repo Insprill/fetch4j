@@ -2,13 +2,13 @@ package net.insprill.fetch4j;
 
 import net.insprill.fetch4j.exception.HostNotFoundException;
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
 import java.util.UUID;
 
 import static net.insprill.fetch4j.Fetch.fetch;
 import static net.insprill.fetch4j.Params.params;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 class FetchTest {
 
@@ -58,12 +58,7 @@ class FetchTest {
     @Test
     void unknownHostTest() {
         String URL = "https://www." + UUID.randomUUID() + ".gov/";
-        try {
-            fetch(URL);
-        } catch (HostNotFoundException ignored) {
-            return;
-        }
-        throw new AssertionFailedError("Failed to throw HostNotFoundException for URL '" + URL + "'");
+        assertThrowsExactly(HostNotFoundException.class, () -> fetch(URL));
     }
 
 }

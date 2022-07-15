@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /**
  * CLass used to perform fetch operations.
@@ -50,6 +52,14 @@ public class Fetch {
      */
     @SneakyThrows
     public Response fetch(String url, Params params) {
+        if (!params.getQueries().isEmpty()) {
+            StringJoiner joiner = new StringJoiner("&", url + "?", "");
+            for (Map.Entry<String, Object> entry : params.getQueries().entrySet()) {
+                String param = entry.getKey() + "=" + URLEncoder.encode(String.valueOf(entry.getValue()));
+                joiner.add(param);
+            }
+            url = joiner.toString();
+        }
         HttpURLConnection conn;
         try {
             conn = (HttpURLConnection) new URL(url).openConnection();

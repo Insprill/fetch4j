@@ -9,6 +9,7 @@ import static net.insprill.fetch4j.Fetch.fetch;
 import static net.insprill.fetch4j.Params.params;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FetchTest {
 
@@ -59,6 +60,21 @@ class FetchTest {
     void unknownHostTest() {
         String URL = "https://www." + UUID.randomUUID() + ".gov/";
         assertThrowsExactly(HostNotFoundException.class, () -> fetch(URL));
+    }
+
+    @Test
+    void queryParameters_Single_ProperlySet() {
+        Response response = fetch("https://reqres.in/api/users", params()
+                .query("page", 2));
+        assertTrue(response.getBody().startsWith("{\"page\":2"));
+    }
+
+    @Test
+    void queryParameters_Multiple_ProperlySet() {
+        Response response = fetch("https://reqres.in/api/users", params()
+                .query("page", 2)
+                .query("per_page", 4));
+        assertTrue(response.getBody().startsWith("{\"page\":2,\"per_page\":4"));
     }
 
 }

@@ -28,6 +28,9 @@ public class Params {
     @Setter
     @NonNull
     private static Map<String, String> defaultHeaders = new HashMap<>();
+    @Setter
+    @NonNull
+    private static Map<String, Object> defaultQueries = new HashMap<>();
 
     /**
      * @return Convenience method for constructing a new parameter builder.
@@ -38,6 +41,7 @@ public class Params {
 
     private Method method = Method.GET;
     private final Map<String, String> headers = new HashMap<>(defaultHeaders);
+    private final Map<String, Object> queries = new HashMap<>(defaultQueries);
     private boolean followRedirects = defaultFollowRedirects;
     private boolean useCaches = defaultUseCaches;
     private int connectionTimeout = defaultConnectionTimeout;
@@ -91,6 +95,18 @@ public class Params {
      */
     public Params header(String key, String value) {
         headers.put(key, value);
+        return this;
+    }
+
+    /**
+     * Set's a query parameter.
+     *
+     * @param key   Query key.
+     * @param value Query value. Will be automatically converted to a string.
+     * @return The parameter builder.
+     */
+    public Params query(String key, Object value) {
+        queries.put(key, value);
         return this;
     }
 

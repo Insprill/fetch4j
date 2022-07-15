@@ -18,7 +18,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
- * CLass used to perform fetch operations.
+ * Class used to perform fetch operations.
+ *
+ * @see Params
  */
 @UtilityClass
 public class Fetch {

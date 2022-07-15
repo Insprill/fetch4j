@@ -13,6 +13,8 @@ import java.util.Map;
 
 /**
  * Builder used to set parameters for fetch operations.
+ *
+ * @see Fetch
  */
 @Getter
 public class Params {

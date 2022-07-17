@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 /**
- * A utility class for performing various URL related operations.
- * This class is not part of the API and breaking changes may occur here at any time.
+ * A utility class for performing various URL related operations.<br>
+ * <b>WARNING:</b> This class is not part of the API and breaking changes may occur here at any time.
  */
 @UtilityClass
 public class URLUtils {

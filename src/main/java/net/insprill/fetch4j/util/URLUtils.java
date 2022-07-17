@@ -30,7 +30,7 @@ public class URLUtils {
             return url;
         String charset = Fetch.DEFAULT_CHARSET.name();
         if (params.getHeaders().containsKey("Content-Type")) {
-            String contentCharset = getContentCharset(params.getHeaders().get("Content-Type"));
+            String contentCharset = HeaderUtil.getContentCharset(params.getHeaders().get("Content-Type"));
             if (contentCharset != null) {
                 charset = contentCharset;
             }
@@ -45,21 +45,6 @@ public class URLUtils {
             throw new InvalidCharsetException(e);
         }
         return joiner.toString();
-    }
-
-    /**
-     * Get the charset from a Content-Type header.
-     *
-     * @param contentType The value of a Content-Type header.
-     * @return The name of the charset, or null if none was found.
-     */
-    public String getContentCharset(String contentType) {
-        for (String s : contentType.split(";")) {
-            String[] data = s.trim().split("=");
-            if (data[0].equalsIgnoreCase("charset"))
-                return data[1];
-        }
-        return null;
     }
 
 }

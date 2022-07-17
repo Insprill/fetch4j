@@ -1,7 +1,7 @@
 package net.insprill.fetch4j;
 
 import lombok.SneakyThrows;
-import net.insprill.fetch4j.util.URLUtils;
+import net.insprill.fetch4j.util.HeaderUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -143,7 +143,7 @@ public class Response {
         if (contentType == null) {
             return Fetch.DEFAULT_CHARSET.name();
         }
-        return URLUtils.getContentCharset(contentType);
+        return HeaderUtil.getContentCharset(contentType);
     }
 
     /**

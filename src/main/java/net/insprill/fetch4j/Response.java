@@ -186,8 +186,11 @@ public class Response {
      * @return The bytes making up the response body.
      */
     public byte[] getBodyBytes() {
-        byte[] resBody = new byte[responseBody.length];
-        System.arraycopy(responseBody, 0, resBody, 0, responseBody.length);
+        int len = responseBody.length;
+        if (len == 0)
+            return EMPTY_RESPONSE_BODY;
+        byte[] resBody = new byte[len];
+        System.arraycopy(responseBody, 0, resBody, 0, len);
         return resBody;
     }
 

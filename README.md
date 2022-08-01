@@ -10,7 +10,7 @@
 <p align="center">
   A light-weight library that bring a Fetch-like API to Java.
   <br />
-  <a href="https://insprill.net/javadocs/fetch4j"><strong>View Javadocs »</strong></a>
+  <a href="https://javadoc.io/doc/net.insprill/fetch4j"><strong>View Javadocs »</strong></a>
   <br />
   <br />
   <a href="https://github.com/Insprill/fetch4j/issues">Report Bugs</a>

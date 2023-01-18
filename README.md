@@ -6,22 +6,31 @@
 
 
 
-<h1 align="center">Fetch4j</h1>
-<p align="center">
-  A light-weight library that bring a Fetch-like API to Java.
-  <br />
-  <a href="https://javadoc.io/doc/net.insprill/fetch4j"><strong>View Javadocs »</strong></a>
-  <br />
-  <br />
-  <a href="https://github.com/Insprill/fetch4j/issues">Report Bugs</a>
-  ·
-  <a href="https://github.com/Insprill/fetch4j/issues">Request Features</a>
-</p>
+
+<div align="center">
+  <h1>Fetch4J</h1>
+  <p>
+    A light-weight library that bring a Fetch-like API to Java.
+    <br />
+    <a href="https://javadoc.io/doc/net.insprill/fetch4j"><strong>View Javadocs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Insprill/fetch4j/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Insprill/fetch4j/issues">Request Feature</a>
+    <br />
+    <br />
+    <b>Notice:</b> 
+    <br />
+    Fetch4J is now feature-complete. New features will only be added upon request. Bug fixes and maintenance will still be provided.
+  </p>
+</div>
+
 
 
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
+<details>
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#usage">Usage</a></li>
@@ -30,6 +39,9 @@
     <li><a href="#license">License</a></li>
   </ol>
 </details>
+
+
+
 
 <!-- USAGE EXAMPLES -->
 
@@ -48,11 +60,19 @@
 </dependency>
 ```
 
-#### Gradle
+#### Gradle (Groovy)
 
 ```groovy
 dependencies {
     implementation 'net.insprill:fetch4j:version'
+}
+```
+
+#### Gradle (Kotlin)
+
+```groovy
+dependencies {
+    implementation("net.insprill:fetch4j:version")
 }
 ```
 
@@ -73,31 +93,28 @@ import static net.insprill.fetch4j.Fetch.fetch;
 import static net.insprill.fetch4j.Params.params;
 
 Response response = fetch("https://example.com/api/paste", params()
-        .method("POST")
+        .method(Method.POST)
+        .contentType(ContentType.TEXT)
         .body("Howdy"));
 ```
 
-#### Simple POST with JSON
+### Advanced Usage
 
-```java
-import static net.insprill.fetch4j.Fetch.fetch;
-import static net.insprill.fetch4j.Params.params;
+Fetch4J supports many parameters to customize requests.
+For all that are available, check out the [Javadocs](https://javadoc.io/doc/net.insprill/fetch4j/latest/net/insprill/fetch4j/Params.html>).
 
-Response response = fetch("https://example.com/api/register", params()
-        .method("POST")
-        .contentType("application/json")
-        .body("{\n" +
-                  "\"email\": \"me@example.net\",\n" +
-                  "\"password\": \"password123\"\n" +
-        "}"));
-```
+
+
+
+<!-- COMPILING -->
 
 ## Compiling
 
-To compile fetch4j, you need JDK 8 or higher and an internet connection.  
+To compile Fetch4J, you will need JDK 8 or higher and an internet connection.  
 Clone this repo, then run `./gradlew build` from your terminal.  
 You can find the compiled jar in the `build/libs` directory.  
-If you wish to install it to your local Maven repository, run `./gradlew publishToMavenLocal` after compiling.
+If you wish to install it to your local Maven repository, run `./gradlew publishToMavenLocal`.
+
 
 
 
@@ -105,16 +122,12 @@ If you wish to install it to your local Maven repository, run `./gradlew publish
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
-contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create.  
+Any contributions you make are **greatly appreciated**!  
+If you're new to contributing to open-source projects, you can follow [this](https://docs.github.com/en/get-started/quickstart/contributing-to-projects) guide.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Make your changes.
-4. Stage your changes (`git add .`)
-5. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-6. Push to the Branch (`git push origin feature/AmazingFeature`)
-7. Open a Pull Request
+
+
 
 <!-- LICENSE -->
 

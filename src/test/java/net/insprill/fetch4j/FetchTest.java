@@ -1,8 +1,10 @@
 package net.insprill.fetch4j;
 
 import net.insprill.fetch4j.exception.HostNotFoundException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.UUID;
 
 import static net.insprill.fetch4j.Fetch.fetch;
@@ -12,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FetchTest {
+
+    @BeforeAll
+    static void setUp() {
+        Params.setDefaultHeaders(Collections.singletonMap("User-Agent", "fetch4j"));
+    }
 
     @Test
     void get() {

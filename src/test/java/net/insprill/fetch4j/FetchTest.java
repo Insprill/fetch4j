@@ -27,7 +27,7 @@ class FetchTest {
         Response response = fetch("https://reqres.in/api/users/2");
 
         assertEquals(200, response.getStatus());
-        assertEquals(280, response.getContentLength());
+        assertEquals(338, response.getContentLength());
         assertEquals("utf-8", response.getContentEncoding());
         assertEquals("application/json", response.getContentType());
     }

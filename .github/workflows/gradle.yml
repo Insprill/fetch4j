@@ -7,19 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '18'
-          distribution: 'temurin'
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@master
+        uses: actions/checkout@v4
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build
         run: ./gradlew build -x test
@@ -28,7 +19,7 @@ jobs:
         run: ./gradlew test
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Compiled JARs
           path: build/libs

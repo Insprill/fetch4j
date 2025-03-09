@@ -2,8 +2,8 @@ plugins {
     id("java")
     id("signing")
     id("maven-publish")
-    id("io.freefair.lombok") version "6.6.1"
-    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+    id("io.freefair.lombok") version "8.12.2.1"
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 group = "net.insprill"
@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks {
